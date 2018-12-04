@@ -18,7 +18,7 @@ use Assetic\Util\VarUtils;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 abstract class AbstractCommand extends Command
 {
@@ -26,9 +26,9 @@ abstract class AbstractCommand extends Command
     protected $basePath;
     protected $debug;
     protected $ed;
-    protected $variables;
+    protected $variables = [];
 
-    public function __construct(AssetManager $assetManager, EventDispatcher $eventDispatcher, string $asseticWriteTo, string $asseticVariables, bool $debug)
+    public function __construct(AssetManager $assetManager, EventDispatcherInterface $eventDispatcher, string $asseticWriteTo, array $asseticVariables, bool $debug)
     {
         $this->am = $assetManager;
         $this->ed = $eventDispatcher;
