@@ -74,8 +74,14 @@
         </service>
 
         <service id="assetic.value_supplier" alias="assetic.value_supplier.default" public="false" />
-        
+
         <!-- Commands -->
-        <prototype namespace="Symfony\Bundle\AsseticBundle\Command\" resource="../../Command/*" autowire="true" autoconfigure="true" public="false" />
+        <prototype namespace="Symfony\Bundle\AsseticBundle\Command\" resource="../../Command/*" autowire="true" autoconfigure="true" public="false">
+            <bind key="$assetManager" type="service" id="assetic.asset_manager" />
+            <bind key="$eventDispatcher" type="service" id="event_dispatcher" />
+            <bind key="$asseticWriteTo">%assetic.write_to%</bind>
+            <bind key="$asseticVariables">%assetic.variables%</bind>
+            <bind key="$debug">%kernel.debug%</bind>
+        </prototype>
     </services>
 </container>
