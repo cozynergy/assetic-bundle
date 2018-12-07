@@ -49,7 +49,7 @@ class Configuration implements ConfigurationInterface
         $builder = new TreeBuilder('assetic');
         $finder = new ExecutableFinder();
 
-        $treeBuilder->getRootNode()
+        $builder->getRootNode()
             ->children()
                 ->booleanNode('debug')->defaultValue('%kernel.debug%')->end()
                 ->arrayNode('use_controller')
